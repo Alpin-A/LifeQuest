@@ -64,3 +64,4 @@ desktop.ini
 *.seed
 *.pid.lock
 .cache/
+package-lock.json
