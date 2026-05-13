@@ -1,0 +1,604 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   LifeQuest Kingston - Global Styles
+   ============================================ */
+
+:root {
+  /* Core theme colors */
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #12121a;
+  --bg-card: #1a1a24;
+  --bg-hover: #22222e;
+  
+  /* Accent colors */
+  --accent-gold: #ffd700;
+  --accent-purple: #8b5cf6;
+  --accent-cyan: #06b6d4;
+  --accent-green: #22c55e;
+  --accent-red: #ef4444;
+  --accent-orange: #f97316;
+  
+  /* Text colors */
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  --text-muted: #52525b;
+  
+  /* Gradients */
+  --xp-gradient: linear-gradient(90deg, #8b5cf6, #06b6d4);
+  --gold-gradient: linear-gradient(135deg, #ffd700, #ffaa00);
+  --civic-gradient: linear-gradient(135deg, #22c55e, #10b981);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* ============================================
+   Scrollbar Styling
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-hover);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-purple);
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+
+.font-display {
+  font-family: 'Orbitron', system-ui, sans-serif;
+}
+
+.text-gradient {
+  background: var(--xp-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-gold {
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   Card Styles
+   ============================================ */
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  background: var(--bg-hover);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+.card-glow {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+}
+
+.card-gold {
+  border-color: rgba(255, 215, 0, 0.3);
+}
+
+.card-gold:hover {
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.card-civic {
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.card-civic:hover {
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
+}
+
+/* ============================================
+   XP Bar Styles
+   ============================================ */
+
+.xp-bar {
+  height: 8px;
+  background: var(--bg-secondary);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.xp-bar-fill {
+  height: 100%;
+  background: var(--xp-gradient);
+  border-radius: 4px;
+  transition: width 1s ease-out;
+}
+
+.xp-bar-animated {
+  animation: xp-pulse 2s ease-in-out infinite;
+}
+
+@keyframes xp-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* ============================================
+   Quest Card Styles
+   ============================================ */
+
+.quest-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.quest-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 4px 0 0 4px;
+}
+
+.quest-main::before {
+  background: var(--accent-purple);
+}
+
+.quest-side::before {
+  background: var(--accent-cyan);
+}
+
+.quest-boss::before {
+  background: var(--accent-gold);
+}
+
+.quest-civic::before {
+  background: var(--accent-green);
+}
+
+/* ============================================
+   Streak Fire Animation
+   ============================================ */
+
+.streak-fire {
+  position: relative;
+}
+
+.streak-fire::after {
+  content: '🔥';
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-size: 1rem;
+  animation: fire-dance 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes fire-dance {
+  from { transform: translateY(0) rotate(-5deg); }
+  to { transform: translateY(-2px) rotate(5deg); }
+}
+
+/* ============================================
+   Pet Animations
+   ============================================ */
+
+.pet-idle {
+  animation: pet-breathe 3s ease-in-out infinite;
+}
+
+@keyframes pet-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.pet-happy {
+  animation: pet-bounce 0.6s ease-in-out infinite;
+}
+
+@keyframes pet-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.pet-sleepy {
+  animation: pet-sleep 2s ease-in-out infinite;
+}
+
+@keyframes pet-sleep {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+
+/* ============================================
+   Button Styles
+   ============================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--xp-gradient);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+}
+
+.btn-secondary {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-hover);
+  border-color: var(--accent-purple);
+}
+
+.btn-gold {
+  background: var(--gold-gradient);
+  color: #0a0a0f;
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+}
+
+.btn-civic {
+  background: var(--civic-gradient);
+  color: white;
+}
+
+.btn-civic:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(34, 197, 94, 0.4);
+}
+
+/* ============================================
+   Leaderboard Styles
+   ============================================ */
+
+.leaderboard-row {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.leaderboard-row:hover {
+  background: var(--bg-hover);
+}
+
+.leaderboard-row.current-user {
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.rank-badge {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.rank-1 { background: linear-gradient(135deg, #ffd700, #ffaa00); color: #0a0a0f; }
+.rank-2 { background: linear-gradient(135deg, #c0c0c0, #a0a0a0); color: #0a0a0f; }
+.rank-3 { background: linear-gradient(135deg, #cd7f32, #b87333); color: white; }
+
+/* ============================================
+   Modal & Overlay
+   ============================================ */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.modal-content {
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 2rem;
+  max-width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* ============================================
+   Celebration Effects
+   ============================================ */
+
+.confetti-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.xp-float {
+  position: fixed;
+  animation: float-up 1.5s ease-out forwards;
+  font-weight: 700;
+  color: var(--accent-gold);
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+@keyframes float-up {
+  0% { 
+    opacity: 1; 
+    transform: translateY(0) scale(1);
+  }
+  100% { 
+    opacity: 0; 
+    transform: translateY(-100px) scale(1.5);
+  }
+}
+
+.level-up-flash {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
+  animation: level-flash 0.5s ease-out;
+  pointer-events: none;
+}
+
+@keyframes level-flash {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ============================================
+   Civic Quest Badge
+   ============================================ */
+
+.civic-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background: rgba(34, 197, 94, 0.2);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  color: var(--accent-green);
+  font-weight: 600;
+}
+
+.civic-badge::before {
+  content: '🏛️';
+}
+
+/* ============================================
+   B2B Dashboard Styles
+   ============================================ */
+
+.dashboard-stat {
+  text-align: center;
+  padding: 1rem;
+}
+
+.dashboard-stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: 'Orbitron', system-ui, sans-serif;
+}
+
+.dashboard-stat-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+}
+
+.team-bar {
+  height: 24px;
+  background: var(--bg-secondary);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.team-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease-out;
+}
+
+/* ============================================
+   Voice Player
+   ============================================ */
+
+.voice-player {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--bg-card);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.voice-play-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--xp-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.voice-play-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+}
+
+/* ============================================
+   Navigation
+   ============================================ */
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg-secondary);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-around;
+  z-index: 40;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  color: var(--accent-purple);
+}
+
+.nav-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 4px;
+  height: 4px;
+  background: var(--accent-purple);
+  border-radius: 50%;
+}
+
+/* ============================================
+   Loading States
+   ============================================ */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-card) 25%,
+    var(--bg-hover) 50%,
+    var(--bg-card) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media (max-width: 768px) {
+  .card {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+  
+  .btn {
+    padding: 0.625rem 1.25rem;
+  }
+  
+  .modal-content {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+}
+
+/* ============================================
+   Utilities
+   ============================================ */
+
+.glass {
+  background: rgba(26, 26, 36, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.glow-sm {
+  box-shadow: 0 0 10px currentColor;
+}
+
+.glow-md {
+  box-shadow: 0 0 20px currentColor;
+}
+
+.glow-lg {
+  box-shadow: 0 0 30px currentColor;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
